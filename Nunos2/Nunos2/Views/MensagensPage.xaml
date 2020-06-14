@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Nunos2.Views.MensagensPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Picker Title="Opcoes" x:Name="cmbOpcoes" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" PropertyChanged="cmbOpcoes_PropertyChanged" />
+            <ListView x:Name="ListViewMenu" 
+                    HasUnevenRows="True">
+                <d:ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Item 1</x:String>
+                        <x:String>Item 2</x:String>
+                    </x:Array>
+                </d:ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Imagem}" HeightRequest="80" WidthRequest="80" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"></Image>
+
+                                <Grid Grid.Row="0" Grid.Column="1" Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="100"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Label Text="{Binding Remetente}" d:Text="{Binding .}" FontSize="30" FontAttributes="Bold" VerticalOptions="Start" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding Mensagem}" d:Text="{Binding .}" Margin="0,-10,0,0" FontSize="20" VerticalTextAlignment="Start" VerticalOptions="Start" Grid.Row="1" Grid.Column="0"/>
+
+                                    <Image Margin="0,0,0,0" Source="https://img.icons8.com/pastel-glyph/2x/facebook-like.png" HeightRequest="30" HorizontalOptions="Start" WidthRequest="30" Grid.Row="2" Grid.Column="0"></Image>
+                                    <Label Margin="30,0,0,0" Text="{Binding NumLikes}" VerticalOptions="Center" HorizontalOptions="Start"  Grid.Row="2" Grid.Column="0"></Label>
+                                    
+                                    <Image Margin="80,0,0,0" Source="https://www.pngitem.com/pimgs/m/71-714713_comment-logo-png-comment-icon-transparent-png.png" HeightRequest="30" HorizontalOptions="Start" WidthRequest="30" Grid.Row="2" Grid.Column="0"></Image>
+                                    <Label Margin="120,0,0,0" Text="{Binding NumComentarios}" VerticalOptions="Center" HorizontalOptions="Start"  Grid.Row="2" Grid.Column="0"></Label>
+
+                                    <Image Margin="170,0,0,0" Source="{Binding Logo}" HeightRequest="70" HorizontalOptions="Start" WidthRequest="70" Grid.Row="2" Grid.Column="0"></Image>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

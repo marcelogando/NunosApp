@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:Nunos2.ViewModels"
+             xmlns:controls="clr-namespace:Nunos2.Controls"
+             x:Class="Nunos2.Views.MainPage" 
+             NavigationPage.BackButtonTitle=""
+             NavigationPage.HasNavigationBar="false"
+            >
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <controls:ExtendedMap x:Name="map"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"/>
+
+        <Image Source="https://nunos.s3.amazonaws.com/ponteiro-viagem.png"
+                 IsVisible="False"
+               Rotation="-20"
+                 x:Name="pinPonteiro"
+                 HeightRequest="55"
+                 WidthRequest="55"
+                 VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="CenterAndExpand"/>
+
+        <Image Source="https://nunos.s3.amazonaws.com/posto-gasolina.png"
+                 IsVisible="False"
+                 x:Name="pinPosto"
+                 HeightRequest="55"
+                 WidthRequest="55"
+               Margin="80,100"
+                 VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="Start"/>
+
+        <StackLayout BackgroundColor="White"
+                        Orientation="Horizontal"
+                        VerticalOptions="Start"
+                        Padding="10"
+                        x:Name="searchLayout"
+                        Margin="30,50,30,0">
+            <Image Source="https://nunos.s3.amazonaws.com/ic_search.png"
+                              HeightRequest="15"
+                              WidthRequest="15"/>
+            <Label HorizontalOptions="FillAndExpand"
+                              LineBreakMode="TailTruncation"
+                              FontAttributes="Italic"
+                              Text="Vai Aonde?"
+                              TextColor="Gray"/>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer 
+                               Tapped="OnEnterAddressTapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+
+        <StackLayout BackgroundColor="White"
+                     IsVisible="False"
+                        Orientation="Horizontal"
+                        VerticalOptions="End"
+                        Padding="10"
+                        HeightRequest="400"
+                        x:Name="opcoesLayout"
+                        Margin="0,40,0,0">
+            <Grid x:Name="gridObjetos">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Source="https://nunos.s3.amazonaws.com/acidente.png" Grid.Column="0" Grid.Row="0"
+                              HeightRequest="70"
+                              WidthRequest="70"/>
+                <Label Text="Acidente" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="0" Grid.Row="0" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/bate-papo.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="1" Grid.Row="0"/>
+                <Label Text="Bate-Papo" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="1" Grid.Row="0" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/bem-estar.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="2" Grid.Row="0"/>
+                <Label Text="Bem-Estar" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="2" Grid.Row="0" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/bloqueio.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="0" Grid.Row="1"/>
+                <Label Text="Bloqueio" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="0" Grid.Row="1" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/buraco-na-rua.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="1" Grid.Row="1"/>
+                <Label Text="Buraco na Rua" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="1" Grid.Row="1" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/caminhao-quebrou.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="2" Grid.Row="1"/>
+                <Label Text="Caminhão Quebrou" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="2" Grid.Row="1" />
+
+                <ImageButton x:Name="BotaoPrecos" BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/precos2.png" Clicked="SelecionaPrecos" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="0" Grid.Row="2" />
+                <Label Text="Preços" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="0" Grid.Row="2" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/restaurantes.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="1" Grid.Row="2"/>
+                <Label Text="Restaurantes" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="1" Grid.Row="2" />
+
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/roubo.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" Grid.Column="2" Grid.Row="2"/>
+                <Label Text="Roubo" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" Grid.Column="2" Grid.Row="2" />
+                
+            </Grid>
+                <Entry x:Name="MensagemStatus" Completed="MandouMensagem" Placeholder="Sua Mensagem Aqui" Grid.Row="1" Margin="20" HeightRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
+                <ImageButton BackgroundColor="White" Source="https://nunos.s3.amazonaws.com/microfone2.png" HorizontalOptions="End" HeightRequest="40" WidthRequest="40" Grid.Row="1"/>
+            </Grid>
+        </StackLayout>
+
+
+        <ImageButton Source="https://nunos.s3.amazonaws.com/mensagem.png"
+                    Margin="20,120"
+                   IsVisible="True"
+                   Clicked="EnviarMensagem"
+                   Command="{Binding GetLocationNameCommand}"
+                   CommandParameter="{Binding Path=CameraPosition.Target,Source={x:Reference map}}"
+                   x:Name="chooseLocationButton"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="EndAndExpand"
+                     BackgroundColor="Transparent"
+                     HeightRequest="70" />
+
+        <Button Text="Parar Viagem"
+                   Margin="40"
+                   Command="{Binding StopRouteCommand}"
+                   IsVisible="false"
+                   Clicked="HandleStopClicked"
+                   x:Name="stopRouteButton"
+                   BackgroundColor="Red"
+                   TextColor="White"
+                   FontSize="17"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="FillAndExpand"/>
+
+        <Button Text="Começar Viagem"
+                   Margin="40"
+                   IsVisible="false"
+                   x:Name="comecarViagem"
+                   BackgroundColor="Blue"
+                   TextColor="White"
+                   FontSize="17"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Clicked="ComecaViagem"/>
+    </Grid>
+</ContentPage>
